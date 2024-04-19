@@ -1,4 +1,7 @@
 #!/usr/bin/env ruby
-# This script outputs script should output: [SENDER],[RECEIVER],[FLAGS]
+SENDER = ARGV[0].scan(/from:\+*\w*/).join[5..-1]
+RECEIVER = ARGV[0].scan(/to:\+*\w*/).join[3..-1]
+FLAGS = ARGV[0].scan(/flags:(.*?)\]/).join
 
-puts ARGV[0].scan(/\[from:(\+?\w*)\]\s\[to:(\+?\w*)\]\s\[flags:(\S*)\]/).join(',')
+msg = SENDER + "," + RECEIVER + "," + FLAGS
+puts msg
